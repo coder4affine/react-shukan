@@ -359,3 +359,7 @@ Promise.race([prom1, prom2])
   export getData5;
 
   export default getData5
+
+  global.a = 10
+
+  console.log(a);
