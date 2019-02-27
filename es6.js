@@ -363,3 +363,202 @@ Promise.race([prom1, prom2])
   global.a = 10
 
   console.log(a);
+
+  const a = { a: 1 , b: 2, c: 3 };
+const b = { d: 1 , e: 2, f: 3 };
+
+
+const c = { ...a, b: 5 };
+
+const add = (a, b, ...rest) => {
+    console.log(a)
+    console.log(rest);
+    return rest.reduce((p, c) => p + c, 0)
+}
+
+console.log(add(1,2, 3, 5));
+
+console.log(a);
+console.log(b);
+console.log(c);
+
+const a = { a: 1 , b: 2, c: 3 };
+const b = { d: 1 , e: 2, f: 3 };
+
+const { a: aa , b: bb } = a
+
+console.log(aa);
+console.log(bb);
+
+const a = { a: 1 , b: 2, c: 3, d: 1 , e: 2, f: 3 };
+const b = { d: 1 , e: 2, f: 3 };
+
+const { c, d, ...rest } = a
+console.log(c);
+console.log(d);
+console.log(rest);
+
+const a = [1,2,3,4,5,6,7,8];
+const b = [1,2,3,4,5,6,7,8];
+
+const c = [...a, ...b]
+console.log(c);
+
+const a = [1,2,3,4,5,6,7,8];
+
+const [x, y, ...rest] = a
+
+console.log(x);
+console.log(y);
+console.log(rest);
+
+
+
+const a = { a: 1 , b: 2, c: 3, d: 1 , e: 2, f: 3 };
+
+const d = { ...a, c: 4};
+
+console.log(d);
+
+const users = [
+    {
+      name: "yagnesh",
+      gender: "male"
+    },
+    {
+      name: "namrata",
+      gender: "female"
+    },
+    {
+      name: "sukan",
+      gender: "female"
+    },
+    {
+      name: "ishan",
+      gender: "male"
+    }
+  ];
+
+
+  const newUser1 = [
+    ...users, {
+        name: "rohit",
+        gender: "male"
+      }];
+
+      console.log(newUser1)
+
+
+  const index = users.findIndex(x => x.name === 'sukan');
+
+  console.log(index);
+
+
+  const newUsers = [...users.slice(0, 2), { ...users[index], name: 'shukan' }, ...users.slice(index + 1)];
+
+  console.log(newUsers)
+
+
+
+const a = { a: 1 , b: 2, c: 3, d: 1 , e: 2, f: 3 };
+
+const d = { ...a, c: 4};
+
+console.log(d);
+
+const users = [
+    {
+      name: "yagnesh",
+      gender: "male"
+    },
+    {
+      name: "namrata",
+      gender: "female"
+    },
+    {
+      name: "sukan",
+      gender: "female"
+    },
+    {
+      name: "ishan",
+      gender: "male"
+    }
+  ];
+
+
+  const newUser1 = [
+    ...users, {
+        name: "rohit",
+        gender: "male"
+      }];
+
+      console.log(newUser1)
+
+
+  const index = users.findIndex(x => x.name === 'sukan');
+
+  console.log(index);
+
+
+  const newUsers = [...users.slice(0, 2), { ...users[index], name: 'shukan' }, ...users.slice(index + 1)];
+
+  console.log(newUsers)
+
+
+
+
+const a = { a: 1 , b: 2, c: 3, d: 1 , e: 2, f: 3 };
+
+const d = { ...a, c: 4};
+
+console.log(d);
+
+const users = [
+    {
+      name: "yagnesh",
+      gender: "male"
+    },
+    {
+      name: "namrata",
+      gender: "female"
+    },
+    {
+      name: "sukan",
+      gender: "female"
+    },
+    {
+      name: "ishan",
+      gender: "male"
+    }
+  ];
+
+
+  const newUser1 = [
+    ...users, {
+        name: "rohit",
+        gender: "male"
+      }];
+
+      console.log(newUser1)
+
+
+  const index = users.findIndex(x => x.name === 'sukan');
+
+  console.log(index);
+
+
+  const newUsers = [...users.slice(0, 2), { ...users[index], name: 'shukan' }, ...users.slice(index + 1)];
+
+  const newUsers1 = users.filter(x => x.name !== 'sukan');
+
+  console.log(newUsers1);
+
+  console.log(newUsers)
+
+  
+
+
+  
+
+
+  
