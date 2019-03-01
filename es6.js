@@ -341,224 +341,208 @@ Promise.race([prom1, prom2])
   .then(x => console.log(`then ${x}`))
   .catch(err => console.log(`catch ${err}`));
 
+const getData = 2;
+const getData1 = 2;
+const getData2 = 2;
+const getData3 = 2;
+const getData4 = 2;
+const getData5 = 2;
+const getData6 = 2;
 
+export default getData5;
 
-  const getData = 2;
-  const getData1 = 2;
-  const getData2 = 2;
-  const getData3 = 2;
-  const getData4 = 2;
-  const getData5 = 2;
-  const getData6 = 2;
+global.a = 10;
 
-  export getData;
-  export getData1;
-  export getData2;
-  export getData3;
-  export getData4;
-  export getData5;
+console.log(a);
 
-  export default getData5
-
-  global.a = 10
-
-  console.log(a);
-
-  const a = { a: 1 , b: 2, c: 3 };
-const b = { d: 1 , e: 2, f: 3 };
-
+const a = { a: 1, b: 2, c: 3 };
+const b = { d: 1, e: 2, f: 3 };
 
 const c = { ...a, b: 5 };
 
 const add = (a, b, ...rest) => {
-    console.log(a)
-    console.log(rest);
-    return rest.reduce((p, c) => p + c, 0)
-}
+  console.log(a);
+  console.log(rest);
+  return rest.reduce((p, c) => p + c, 0);
+};
 
-console.log(add(1,2, 3, 5));
+console.log(add(1, 2, 3, 5));
 
 console.log(a);
 console.log(b);
 console.log(c);
 
-const a = { a: 1 , b: 2, c: 3 };
-const b = { d: 1 , e: 2, f: 3 };
+const a = { a: 1, b: 2, c: 3 };
+const b = { d: 1, e: 2, f: 3 };
 
-const { a: aa , b: bb } = a
+const { a: aa, b: bb } = a;
 
 console.log(aa);
 console.log(bb);
 
-const a = { a: 1 , b: 2, c: 3, d: 1 , e: 2, f: 3 };
-const b = { d: 1 , e: 2, f: 3 };
+const a = { a: 1, b: 2, c: 3, d: 1, e: 2, f: 3 };
+const b = { d: 1, e: 2, f: 3 };
 
-const { c, d, ...rest } = a
+const { c, d, ...rest } = a;
 console.log(c);
 console.log(d);
 console.log(rest);
 
-const a = [1,2,3,4,5,6,7,8];
-const b = [1,2,3,4,5,6,7,8];
+const a = [1, 2, 3, 4, 5, 6, 7, 8];
+const b = [1, 2, 3, 4, 5, 6, 7, 8];
 
-const c = [...a, ...b]
+const c = [...a, ...b];
 console.log(c);
 
-const a = [1,2,3,4,5,6,7,8];
+const a = [1, 2, 3, 4, 5, 6, 7, 8];
 
-const [x, y, ...rest] = a
+const [x, y, ...rest] = a;
 
 console.log(x);
 console.log(y);
 console.log(rest);
 
+const a = { a: 1, b: 2, c: 3, d: 1, e: 2, f: 3 };
 
-
-const a = { a: 1 , b: 2, c: 3, d: 1 , e: 2, f: 3 };
-
-const d = { ...a, c: 4};
+const d = { ...a, c: 4 };
 
 console.log(d);
 
 const users = [
-    {
-      name: "yagnesh",
-      gender: "male"
-    },
-    {
-      name: "namrata",
-      gender: "female"
-    },
-    {
-      name: "sukan",
-      gender: "female"
-    },
-    {
-      name: "ishan",
-      gender: "male"
-    }
-  ];
+  {
+    name: "yagnesh",
+    gender: "male"
+  },
+  {
+    name: "namrata",
+    gender: "female"
+  },
+  {
+    name: "sukan",
+    gender: "female"
+  },
+  {
+    name: "ishan",
+    gender: "male"
+  }
+];
 
+const newUser1 = [
+  ...users,
+  {
+    name: "rohit",
+    gender: "male"
+  }
+];
 
-  const newUser1 = [
-    ...users, {
-        name: "rohit",
-        gender: "male"
-      }];
+console.log(newUser1);
 
-      console.log(newUser1)
+const index = users.findIndex(x => x.name === "sukan");
 
+console.log(index);
 
-  const index = users.findIndex(x => x.name === 'sukan');
+const newUsers = [
+  ...users.slice(0, 2),
+  { ...users[index], name: "shukan" },
+  ...users.slice(index + 1)
+];
 
-  console.log(index);
+console.log(newUsers);
 
+const a = { a: 1, b: 2, c: 3, d: 1, e: 2, f: 3 };
 
-  const newUsers = [...users.slice(0, 2), { ...users[index], name: 'shukan' }, ...users.slice(index + 1)];
-
-  console.log(newUsers)
-
-
-
-const a = { a: 1 , b: 2, c: 3, d: 1 , e: 2, f: 3 };
-
-const d = { ...a, c: 4};
-
-console.log(d);
-
-const users = [
-    {
-      name: "yagnesh",
-      gender: "male"
-    },
-    {
-      name: "namrata",
-      gender: "female"
-    },
-    {
-      name: "sukan",
-      gender: "female"
-    },
-    {
-      name: "ishan",
-      gender: "male"
-    }
-  ];
-
-
-  const newUser1 = [
-    ...users, {
-        name: "rohit",
-        gender: "male"
-      }];
-
-      console.log(newUser1)
-
-
-  const index = users.findIndex(x => x.name === 'sukan');
-
-  console.log(index);
-
-
-  const newUsers = [...users.slice(0, 2), { ...users[index], name: 'shukan' }, ...users.slice(index + 1)];
-
-  console.log(newUsers)
-
-
-
-
-const a = { a: 1 , b: 2, c: 3, d: 1 , e: 2, f: 3 };
-
-const d = { ...a, c: 4};
+const d = { ...a, c: 4 };
 
 console.log(d);
 
 const users = [
-    {
-      name: "yagnesh",
-      gender: "male"
-    },
-    {
-      name: "namrata",
-      gender: "female"
-    },
-    {
-      name: "sukan",
-      gender: "female"
-    },
-    {
-      name: "ishan",
-      gender: "male"
-    }
-  ];
+  {
+    name: "yagnesh",
+    gender: "male"
+  },
+  {
+    name: "namrata",
+    gender: "female"
+  },
+  {
+    name: "sukan",
+    gender: "female"
+  },
+  {
+    name: "ishan",
+    gender: "male"
+  }
+];
 
+const newUser1 = [
+  ...users,
+  {
+    name: "rohit",
+    gender: "male"
+  }
+];
 
-  const newUser1 = [
-    ...users, {
-        name: "rohit",
-        gender: "male"
-      }];
+console.log(newUser1);
 
-      console.log(newUser1)
+const index = users.findIndex(x => x.name === "sukan");
 
+console.log(index);
 
-  const index = users.findIndex(x => x.name === 'sukan');
+const newUsers = [
+  ...users.slice(0, 2),
+  { ...users[index], name: "shukan" },
+  ...users.slice(index + 1)
+];
 
-  console.log(index);
+console.log(newUsers);
 
+const a = { a: 1, b: 2, c: 3, d: 1, e: 2, f: 3 };
 
-  const newUsers = [...users.slice(0, 2), { ...users[index], name: 'shukan' }, ...users.slice(index + 1)];
+const d = { ...a, c: 4 };
 
-  const newUsers1 = users.filter(x => x.name !== 'sukan');
+console.log(d);
 
-  console.log(newUsers1);
+const users = [
+  {
+    name: "yagnesh",
+    gender: "male"
+  },
+  {
+    name: "namrata",
+    gender: "female"
+  },
+  {
+    name: "sukan",
+    gender: "female"
+  },
+  {
+    name: "ishan",
+    gender: "male"
+  }
+];
 
-  console.log(newUsers)
+const newUser1 = [
+  ...users,
+  {
+    name: "rohit",
+    gender: "male"
+  }
+];
 
-  
+console.log(newUser1);
 
+const index = users.findIndex(x => x.name === "sukan");
 
-  
+console.log(index);
 
+const newUsers = [
+  ...users.slice(0, 2),
+  { ...users[index], name: "shukan" },
+  ...users.slice(index + 1)
+];
 
-  
+const newUsers1 = users.filter(x => x.name !== "sukan");
+
+console.log(newUsers1);
+
+console.log(newUsers);
