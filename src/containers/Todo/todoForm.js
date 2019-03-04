@@ -24,6 +24,15 @@ const todoForm = ({ addTodo, todo, onChange, error }) => {
   );
 };
 
-todoForm.propTypes = {};
+todoForm.defaultProps = {
+  todo: ""
+};
+
+todoForm.propTypes = {
+  addTodo: PropTypes.func.isRequired,
+  todo: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  error: PropTypes.string.isRequired
+};
 
 export default memo(todoForm);

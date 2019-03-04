@@ -2,13 +2,15 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import TodoForm from "./todoForm";
 import TodoList from "./todoList";
+import FilterTodos from "./filterTodos";
 import styles from "./styles";
 
 class index extends PureComponent {
   state = {
     todo: "",
     error: "",
-    todos: []
+    todos: [],
+    status: "all"
   };
 
   onChange = e => {
@@ -44,23 +46,43 @@ class index extends PureComponent {
     });
   };
 
+  filterTodo = status => {
+    this.setState({ status });
+  };
+
+  filterTodos = (todos, status) => {
+    return todos.filter(item => {
+      if (status === "pending") {
+        return !item.isDone;
+      } else if (status === "completed") {
+        return item.isDone;
+      } else {
+        return true;
+      }
+    });
+  };
+
   render() {
-    const { todo, error, todos } = this.state;
-    console.log("render");
+    const { todo, error, todos, status } = this.state;
+
+    const filterTodos = this.filterTodos(todos, status);
+
     return (
       <div style={{ ...styles.container, ...styles.column, ...styles.flex }}>
-        <h1 style={styles.headerText}>My To-Do Application</h1>
-        <TodoForm
-          addTodo={this.addTodo}
-          todo={todo}
-          onChange={this.onChange}
-          error={error}
-        />
-        <TodoList
-          todos={todos}
-          completeTask={this.completeTask}
-          deleteTask={this.deleteTask}
-        />
+        <div>
+          <h1 style={styles.headerText}>My To-Do Application</h1>
+          <TodoForm
+            addTodo={this.addTodo}
+            onChange={this.onChange}
+            error={error}
+          />
+          <TodoList
+            todos={filterTodos}
+            completeTask={this.completeTask}
+            deleteTask={this.deleteTask}
+          />
+        </div>
+        {todos.length > 0 && <FilterTodos filterTodo={this.filterTodo} />}
       </div>
     );
   }
