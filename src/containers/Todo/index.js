@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import TodoForm from "./todoForm";
 import TodoList from "./todoList";
 import FilterTodos from "./filterTodos";
+import ErrorBoundary from "../../components/ErrorBoundary";
 import styles from "./styles";
 
 class index extends PureComponent {
@@ -12,6 +13,17 @@ class index extends PureComponent {
     todos: [],
     status: "all"
   };
+
+  constructor(props) {
+    super(props);
+    this.h1Ele = React.createRef();
+  }
+
+  componentDidMount() {
+    this.h1Ele.current.setAttribute("style", "color:red");
+    // this.h1Ele.setAttribute("style", "color:red");
+    this.input.focus();
+  }
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value, error: "" });
@@ -68,22 +80,31 @@ class index extends PureComponent {
     const filterTodos = this.filterTodos(todos, status);
 
     return (
-      <div style={{ ...styles.container, ...styles.column, ...styles.flex }}>
-        <div>
-          <h1 style={styles.headerText}>My To-Do Application</h1>
-          <TodoForm
-            addTodo={this.addTodo}
-            onChange={this.onChange}
-            error={error}
-          />
-          <TodoList
-            todos={filterTodos}
-            completeTask={this.completeTask}
-            deleteTask={this.deleteTask}
-          />
+      <ErrorBoundary>
+        <div style={{ ...styles.container, ...styles.column, ...styles.flex }}>
+          <div>
+            {/* <h1 ref={(ref = this.h1Ele = ref)} style={styles.headerText}>
+              My To-Do Application
+            </h1> */}
+            <h1 ref={this.h1Ele} style={styles.headerText}>
+              My To-Do Application
+            </h1>
+            <TodoForm
+              ref={ref => (this.input = ref)}
+              todo={todo}
+              addTodo={this.addTodo}
+              onChange={this.onChange}
+              error={error}
+            />
+            <TodoList
+              todos={filterTodos}
+              completeTask={this.completeTask}
+              deleteTask={this.deleteTask}
+            />
+          </div>
+          {todos.length > 0 && <FilterTodos filterTodo={this.filterTodo} />}
         </div>
-        {todos.length > 0 && <FilterTodos filterTodo={this.filterTodo} />}
-      </div>
+      </ErrorBoundary>
     );
   }
 }
