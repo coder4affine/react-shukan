@@ -20,40 +20,74 @@ class index extends PureComponent {
   }
 
   componentDidMount() {
+    this.getTodoData();
     this.h1Ele.current.setAttribute("style", "color:red");
     // this.h1Ele.setAttribute("style", "color:red");
     this.input.focus();
   }
 
+  getTodoData = async () => {
+    const res = await fetch("http://localhost:3004/todos");
+    const todos = await res.json();
+    this.setState({ todos });
+  };
+
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value, error: "" });
   };
 
-  completeTask = id => {
+  completeTask = async id => {
     const { todos } = this.state;
     const index = todos.findIndex(x => x.id === id);
+
+    const todo = { ...todos[index], isDone: !todos[index].isDone };
+
+    await fetch(`http://localhost:3004/todos/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(todo),
+      headers: {
+        accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    });
+
     const newTodos = [
       ...todos.slice(0, index),
-      { ...todos[index], isDone: !todos[index].isDone },
+      todo,
       ...todos.slice(index + 1)
     ];
     this.setState({ todos: newTodos });
   };
 
-  deleteTask = id => {
+  deleteTask = async id => {
     const { todos } = this.state;
+    await fetch(`http://localhost:3004/todos/${id}`, {
+      method: "DELETE"
+    });
     this.setState({ todos: todos.filter(x => x.id !== id) });
   };
 
-  addTodo = e => {
+  addTodo = async e => {
     e.preventDefault();
     const { todo, todos } = this.state;
     if (!todo) {
       this.setState({ error: "Required" });
       return;
     }
+
+    const res = await fetch("http://localhost:3004/todos", {
+      method: "POST",
+      body: JSON.stringify({ todo, isDone: false }),
+      headers: {
+        accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    });
+
+    const newTodo = await res.json();
+
     this.setState({
-      todos: [...todos, { id: new Date().valueOf(), todo, isDone: false }],
+      todos: [...todos, newTodo],
       todo: ""
     });
   };

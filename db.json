@@ -1,0 +1,26 @@
+{
+  "Todos": [
+    {
+      "todo": "get milk",
+      "isDone": false,
+      "id": 1
+    }
+  ],
+  "courses": [
+    {
+      "id": "1",
+      "title": "Building Applications in React and Flux",
+      "watchHref": "http://www.pluralsight.com/courses/react-flux-building-applications",
+      "authorId": "1",
+      "length": "5:08",
+      "category": "react"
+    }
+  ],
+  "authors": [
+    {
+      "id": "1",
+      "firstName": "Dan",
+      "lastName": "Wahlin"
+    }
+  ]
+}

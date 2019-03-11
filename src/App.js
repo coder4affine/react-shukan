@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import PropTypes from "prop-types";
 import {
   BrowserRouter as Router,
@@ -6,37 +6,24 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
+import loadable from "@loadable/component";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Home from "./containers/Home";
-import Details from "./containers/Details";
-import About from "./containers/About";
+// import Home from "./containers/Home";
+// import Details from "./containers/Details";
+// import About from "./containers/About";
 import NoMatch from "./containers/NoMatch";
 // import Todo from "./containers/Todo";
 
-const routes = [
-  {
-    path: "/",
-    exact: true,
-    component: Home,
-    label: "Home",
-    isAuthenticated: false
-  },
-  {
-    path: "/details",
-    exact: false,
-    component: Details,
-    label: "Details",
-    isAuthenticated: true
-  },
-  {
-    path: "/about",
-    exact: false,
-    component: About,
-    label: "About",
-    isAuthenticated: false
-  }
-];
+const AsyncHome = loadable(() => import("./containers/Home"), {
+  fallback: <div>Loading...</div>
+});
+const AsyncDetails = loadable(() => import("./containers/Details"), {
+  fallback: <div>Loading...</div>
+});
+const AsyncAbout = loadable(() => import("./containers/About"), {
+  fallback: <div>Loading...</div>
+});
 
 function PrivateRoute({ component: Component, isAuthenticated, ...rest }) {
   return (
@@ -65,19 +52,12 @@ class App extends Component {
         <div
           style={{ display: "flex", flexDirection: "column", height: "100%" }}
         >
-          <Header routes={routes} />
+          <Header />
           <div style={{ display: "flex", flex: 1 }}>
             <Switch>
-              {routes.map(route => {
-                return (
-                  <Route
-                    exact={route.exact}
-                    key={route.path}
-                    path={route.path}
-                    render={props => <route.component {...props} />}
-                  />
-                );
-              })}
+              <Route path="/" exact component={AsyncHome} />
+              <Route path="/details" exact component={AsyncDetails} />
+              <Route path="/about" exact component={AsyncAbout} />
               <Route component={NoMatch} />
             </Switch>
           </div>

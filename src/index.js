@@ -4,6 +4,16 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
+// https://demos.scotch.io/visual-guide-to-css3-flexbox-flexbox-playground/demos/
+
+// https://github.com/typicode/json-server
+
+// https://github.com/jaredpalmer/formik
+
+// https://www.smooth-code.com/open-source/loadable-components/docs/library-splitting/
+
+//https://reacttraining.com/react-router/web/example/route-config
+
 ReactDOM.render(
   <StrictMode>
     <App />
