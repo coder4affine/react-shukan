@@ -49,6 +49,17 @@ class index extends Component {
     return "";
   };
 
+  addCourse = () => {
+    const {
+      history: { push }
+    } = this.props;
+    push({
+      pathname: "/details",
+      // search: "?query=abc",
+      state: { authors: this.state.authors }
+    });
+  };
+
   render() {
     const { courses, error } = this.state;
     if (error) {
@@ -56,30 +67,33 @@ class index extends Component {
     }
 
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Link</th>
-            <th>Author</th>
-            <th>Length</th>
-            <th>Category</th>
-          </tr>
-        </thead>
-        <tbody>
-          {courses.map(course => (
-            <tr key={course.id}>
-              <td>{course.title}</td>
-              <td>
-                <a href={courses.watchHref}>Link</a>
-              </td>
-              <td>{this.displayAuthor(course.authorId)}</td>
-              <td>{course.length}</td>
-              <td>{course.category}</td>
+      <div>
+        <button onClick={this.addCourse}>Add Course</button>
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Link</th>
+              <th>Author</th>
+              <th>Length</th>
+              <th>Category</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {courses.map(course => (
+              <tr key={course.id}>
+                <td>{course.title}</td>
+                <td>
+                  <a href={courses.watchHref}>Link</a>
+                </td>
+                <td>{this.displayAuthor(course.authorId)}</td>
+                <td>{course.length}</td>
+                <td>{course.category}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     );
   }
 }
